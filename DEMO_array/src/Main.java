@@ -1,13 +1,12 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
 
-        int a=5;
-        int b=((3+4)*(100+48)*a);
-        byte c= (byte) b;
+    String seasons[] = {"Winter", "Spring", "Summer", "Autumn"};
 
-        System.out.println(c);l
-        System.out.println(b);
+        System.out.println(Arrays.asList(seasons));
 
     }
 }
