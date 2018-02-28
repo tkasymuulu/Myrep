@@ -7,5 +7,11 @@ public class Box {
     void volume() {
         System.out.println("Объем равен ");
         System.out.println(width + height + depth);
-    }
+
+     }
+
+     //метод теперь возвращает значение с типом double
+     double volume2(){
+        return width * height * depth;
+     }
 }

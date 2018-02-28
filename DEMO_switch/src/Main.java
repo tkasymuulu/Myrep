@@ -6,7 +6,7 @@ public class Main {
         String week[] = {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресение"};
 
         Scanner d = new Scanner(System.in);
-        System.out.println("Ввежите номер текущей день недели:  ");
+        System.out.println("Введите номер текущей день недели:  ");
         int dw = d.nextInt();
 
         switch (dw) {
