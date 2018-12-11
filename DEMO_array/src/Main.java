@@ -4,9 +4,19 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
-    String seasons[] = {"Winter", "Spring", "Summer", "Autumn"};
+        int arr[] = new int[10];
+        for(int i = 0; i <  arr.length; i++) {
+            arr[i] =  (int)(Math.random() * 10);
 
-        System.out.println(Arrays.asList(seasons));
+        }
+        System.out.print("\nSorted: \n");
+
+        Arrays.sort(arr);
+
+        for(int i = 0; i <  arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
 
     }
 }
