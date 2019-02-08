@@ -3,15 +3,7 @@ public class Threads1 extends Thread {
     public void run() {
         System.out.println("Thread1 start");
 
-        //1
-        Sender sender1 = new Sender("kubanych.tynaliev@bk.ru", "19082015k");
-        sender1.AutoAttachFiles("E:\\sender\\Kubanych  Tynaliev");
-        sender1.text="1) Kubanych  Tynaliev\n" +
-                "2) Дата рождения: 05.03.1990\n" +
-                "3) Номер паспорта: AC 3240081\n" +
-                "4) Контактные данные: +996707191117 , Rakhat.temirova@bk.ru\n" +
-                "5) Цель: Разрешение на долгосрочное прибывание";
-        sender1.Send();
+        
 
         //2
         Sender sender2 = new Sender("ksatylganov@bk.ru","19082015k");
@@ -23,25 +15,9 @@ public class Threads1 extends Thread {
                 "5)цель: долгосрочное пребывание";
         sender2.Send();
 
-        //3
-        Sender sender3 = new Sender("sulpiyeva@bk.ru", "19082015z");
-        sender3.AutoAttachFiles("E:\\sender\\SULPIEVA ZAMIRA");
-        sender3.text="1)SULPIEVA ZAMIRA\n" +
-                "2)Дата рождения:19.09.1968\n" +
-                "3)Номер паспорта:AC1696447\n" +
-                "4)zamira.sulpieva@mail.ru +996777105112\n" +
-                "5)Цель поездки:долгосрочное прибывание";
-        sender3.Send();
+        
 
-        //4
-        Sender sender4 = new Sender("talimov94@bk.ru","19082015a");
-        sender4.AutoAttachFiles("E:\\sender\\TALIMOV ABDYKARIM");
-        sender4.text="1)TALIMOV ABDYKARIM\n" +
-                "2)Дата рождения 15.11.1997\n" +
-                "3)Номер паспорта AC2611095\n" +
-                "4)abdykarim.talimov@mail.ru +996707758595\n" +
-                "5)Цель:разрешение на долгосрочное прибывание";
-        sender4.Send();
+        
 
         //5
         Sender sender5 = new Sender("emka.omurzak@bk.ru", "19082015e");
@@ -73,15 +49,7 @@ public class Threads1 extends Thread {
                 "5)цель:долгосрочное пребывание";
         sender7.Send();
 
-        //8
-        Sender sender8 = new Sender("kazakbaev7474@mail.ru", "0704254710a");
-        sender8.AutoAttachFiles("E:\\sender\\KAZAKBAEV ERMEK");
-        sender8.text="1)KAZAKBAEV ERMEK\n" +
-                "2)дата рождения 13.11.1974\n" +
-                "3)номер паспорта AC 1653007\n" +
-                "4)kazakbaev7474@mail.ru +996702017080\n" +
-                "5)цель:долгосрочное пребывание";
-        sender8.Send();
+       
 
         //9
         Sender sender9 = new Sender("ergeshov.esen@inbox.ru","19082015e");

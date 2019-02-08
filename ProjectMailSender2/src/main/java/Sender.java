@@ -11,28 +11,45 @@ import java.util.List;
 import java.util.Properties;
 
 public class Sender {
-    public Sender(String username, String password) {
+
+
+    public Sender(String username, String password, String path, String text) {
         this.username = username;
         this.password = password;
+        this.path = path;
+        this.text = text;
     }
 
     private String username;
     private String password;
+    private String path;
+    private String text;
     private ArrayList<String> attachFiles = new ArrayList<String>();
-    public String text;
-    final String CODE="CODE";
-    final String TO="tkasymuulu@siroca.com";
-    final String CC="tkasymuulu89@gmail.com,kizalakova_nurgi@mail.ru";
+    final private String CODE = "CODE";
+    final private String TO = "tkasymuulu@siroca.com";
+    final private String CC = "tkasymuulu89@gmail.com,kizalakova_nurgi@mail.ru";
 
-    public void AutoAttachFiles(String path){
-        File dir = new File(path); //path указывает на директорию
-        File[] arrFiles = dir.listFiles();
-        List<File> lst = Arrays.asList(arrFiles);
-        for (File f: lst) attachFiles.add(f.getPath());
+    public String getUsername() {
+        return username;
+    }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     public void Send(){
+
+            File dir = new File(path); //path указывает на директорию
+            File[] arrFiles = dir.listFiles();
+            List<File> lst = Arrays.asList(arrFiles);
+            for (File f : lst) {
+                attachFiles.add(f.getPath());
+            }
+
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");

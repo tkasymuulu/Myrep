@@ -95,15 +95,7 @@ public class Threads2 extends Thread{
                 "5. Долгосрочная виза/проживание";
         sender27.Send();
 
-        //28
-        Sender sender28 = new Sender("talapbekov1996@mail.ru","626487889196e");
-        sender28.AutoAttachFiles("E:\\sender\\Talapbekov Erlan");
-        sender28.text="1)Talapbekov Erlan\n" +
-                "2)Дата рождения 12.07.1996\n" +
-                "3)Номер паспорта AC3321210\n" +
-                "4) Talapbekov1996@mail.ru   +996702120796\n" +
-                "5)цель:разрешение на долгосрочное пребывание";
-        sender28.Send();
+       
 
         //29
         Sender sender29 = new Sender("arman_ast87@mail.ru","goha021186");
