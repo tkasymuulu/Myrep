@@ -3,11 +3,14 @@ public class main {
 
 
 
-        Threads1 t1 = new Threads1();
+        /*Threads1 t1 = new Threads1();
         t1.start();
 
         Threads2 t2 = new Threads2();
-        t2.start();
+        t2.start();*/
+
+        Threads3 t3 = new Threads3();
+        t3.start();
 
 
     }

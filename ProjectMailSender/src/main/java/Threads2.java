@@ -2,7 +2,7 @@ public class Threads2 extends Thread{
 
     public void run() {
         System.out.println("Thread2 start");
-        long start = System.currentTimeMillis();
+
 
         //19
         Sender sender19 = new Sender("atolobekov@list.ru","19082015a");
@@ -107,8 +107,7 @@ public class Threads2 extends Thread{
                 "5)долгосрочное пребывание";
         sender29.Send();
         //--------------------------------------------------------
-        long finish = System.currentTimeMillis();
-        System.out.println(finish-start);
+
 
         try {
             sleep(500); // Задержка в 0.5 сек

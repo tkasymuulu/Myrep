@@ -18,16 +18,21 @@ public class Sender {
         this.password = password;
         this.path = path;
         this.text = text;
+
     }
 
     private String username;
     private String password;
     private String path;
     private String text;
+    private String var;
     private ArrayList<String> attachFiles = new ArrayList<String>();
     final private String CODE = "CODE";
     final private String TO = "tkasymuulu@siroca.com";
     final private String CC = "tkasymuulu89@gmail.com,kizalakova_nurgi@mail.ru";
+
+
+
 
     public String getUsername() {
         return username;
@@ -50,10 +55,16 @@ public class Sender {
                 attachFiles.add(f.getPath());
             }
 
+            if(username.matches("(.*)gmail.com"))
+                var="smtp.gmail.com";
+            else if (username.matches("(.*)mail.ru") || username.matches("(.*)inbox.ru") ||
+                    username.matches("(.*)list.ru") || username.matches("(.*)bk.ru"))
+                var="smtp.mail.ru";
+
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.mail.ru");
+        props.put("mail.smtp.host", var);
         props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props,

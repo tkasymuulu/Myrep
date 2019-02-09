@@ -1,15 +1,24 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class main {
     public static void main(String[] args) {
-
         long start = System.currentTimeMillis();
 
-        NewThread nt = new NewThread();
-        nt.start();
 
+        Addresslist al = new Addresslist();
+        al.add();
+        al.run();
 
         long finish = System.currentTimeMillis();
-        System.out.println(finish-start);
+        System.out.println((double) (finish-start)/1000);
+
+
     }
+
+
 }
+
+
+
+
