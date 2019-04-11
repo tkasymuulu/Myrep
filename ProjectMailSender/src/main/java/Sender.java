@@ -11,21 +11,23 @@ import java.util.List;
 import java.util.Properties;
 
 public class Sender {
-    public Sender(String username, String password) {
+    public Sender(String username, String password, String CODE) {
         this.username = username;
         this.password = password;
+        this.CODE = CODE;
     }
 
     private String username;
     private String password;
+    private String CODE;
     private ArrayList<String> attachFiles = new ArrayList<String>();
     public String text;
     String var;
-    final String CODE="636XJ2UV";
-    final String TO="tkasymuulu@siroca.com"; //zamkarta_astana@mzv.cz
+
+    final String TO="visa_astana@mzv.cz"; //visa_astana@mzv.cz, zamkarta_astana@mzv.cz
     final String CC="tkasymuulu89@gmail.com,kizalakova_nurgi@mail.ru";
 
-    public void AutoAttachFiles(String path){
+    public void AutoAttachFiles(String path) {
         File dir = new File(path); //path указывает на директорию
         File[] arrFiles = dir.listFiles();
         List<File> lst = Arrays.asList(arrFiles);
@@ -36,10 +38,10 @@ public class Sender {
     public void Send(){
 
         if(username.matches("(.*)gmail.com"))
-            var="smtp.gmail.com";
+            var = "smtp.gmail.com";
         else if (username.matches("(.*)mail.ru") || username.matches("(.*)inbox.ru") ||
                 username.matches("(.*)list.ru") || username.matches("(.*)bk.ru"))
-            var="smtp.mail.ru";
+            var = "smtp.mail.ru";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -60,7 +62,7 @@ public class Sender {
 
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(TO));
-            //message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(CC));
+            message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(CC));
             message.setSubject(CODE);
             //message.setText("ТЕКСТ ПИСЬМА");
 
@@ -89,11 +91,13 @@ public class Sender {
 
             message.setContent(multipart);
             Transport.send(message);
-            System.out.println("Send SUCCESS to " + username + " | "+password);
+
+            System.out.println(username + " | " + password);
 
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            System.out.println("Ошибка у " + username + " " + password);
+            System.out.println(e.getMessage());
         }
     }
 }
