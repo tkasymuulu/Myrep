@@ -13,8 +13,50 @@ public final class Models {
 
         public static final String TABLE_NAME="ResearchPanels";
 
-        public static final String KEY_ID = "Id";
+        public static final String KEY_ID = "_id";
         public static final String KEY_NAME = "Name";
+        public static final String KEY_IS_ACTIVE = "isActive";
+    }
 
+    public static final class ResearchPanelRelations {
+
+        public static final String TABLE_NAME = "ResearchPanelRelations";
+
+        public static final String KEY_ID = "_id";
+        public static final String KEY_ID_PANEL = "IdPanel";
+        public static final String KEY_ID_RESEARCH = "IdResearch";
+    }
+
+    public static final class SpAnaliz {
+
+        public static final String TABLE_NAME = "sp_analiz";
+
+        public static final String KEY_ID = "_id";
+        public static final String KEY_NAMEID = "nameid";
+        public static final String KEY_TYPEID = "typeid";
+        public static final String KEY_IDSUBGROUP = "IdSubGroup";
+        public static final String KEY_ISFAVORITE = "isFavorite";
+    }
+
+    public static final class SpPodanaliz {
+
+        public static final String TABLE_NAME = "sp_podanaliz";
+
+        public static final String KEY_ID = "_id";
+        public static final String KEY_CODEIDANALIZ = "codeid_analiz";
+        public static final String KEY_NAMEID = "nameid";
+        public static final String KEY_RESULT = "result";
+        public static final String KEY_ISACTIVE = "IsActive";
+    }
+
+    public static final class Normas {
+
+        public static final String TABLE_NAME = "normas";
+
+        public static final String KEY_ID = "_id";
+        public static final String KEY_IDTEST = "IdTest";
+        public static final String KEY_VALUEFROM = "ValueFrom";
+        public static final String KEY_VALUETO = "ValueTo";
+        public static final String KEY_INTERPRETATION = "Interpretation";
     }
 }

@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/researchTxt"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Аллергический панель только с паралельным фигнуй"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+
+    <ImageButton
+        android:id="@+id/iconFav"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/unstar"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>

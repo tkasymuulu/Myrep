@@ -3,6 +3,7 @@ package com.example.rp;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.rp.Model.Models;
 import com.example.rp.data.DbHelper;
+import com.example.rp.data.ResearchPanelAdapter;
+
 import net.sqlcipher.database.SQLiteDatabase;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,15 +51,14 @@ public class MainActivity extends AppCompatActivity {
             throw mSQLException;
         }
 
-        cursor  = dbHelper.getListResearchPanel();
-        ArrayList<String> listRp = new ArrayList<>();
-        while (cursor.moveToNext()){
-            listRp.add(cursor.getString(1));
-        }
+
+
 
         listView = findViewById(R.id.rpList);
-        final ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listRp);
-        listView.setAdapter(adapter);
+        cursor  = dbHelper.getListResearchPanel();
+        ResearchPanelAdapter rpAdapter = new ResearchPanelAdapter(MainActivity.this, cursor, 0);
+        listView.setAdapter(rpAdapter);
+
 
         Cursor cursor = dbHelper.getItemIdResearchPanel();
         final ArrayList<String> ar_Ids = new ArrayList<>();

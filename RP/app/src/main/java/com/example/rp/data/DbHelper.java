@@ -2,10 +2,13 @@ package com.example.rp.data;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.view.Display;
+
 import com.example.rp.Model.Models;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,7 +38,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         this.getReadableDatabase(Models.KEY);
     }
-
 
     public void updateDataBase() throws IOException {
         if (mNeedUpdate) {
@@ -125,26 +127,43 @@ public class DbHelper extends SQLiteOpenHelper {
             mNeedUpdate = true;
     }
 
-    //---------------------------------------------------
+    //----------------------------------------------------------------------------------------------
 
     //READ All_Researchpanel
     public Cursor getListResearchPanel() {
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query = "select * from " + Models.ResearchPanels.TABLE_NAME  + " order by Name";
-        Cursor data = db.rawQuery(query, null);
+
+        String query = "select " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_ID
+                + ", " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_NAME + ", count(" + Models.SpAnaliz.TABLE_NAME
+                + "." + Models.SpAnaliz.KEY_ID +
+                ") from " + Models.ResearchPanels.TABLE_NAME + " left join " + Models.ResearchPanelRelations.TABLE_NAME + " on "
+                + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_ID + "=" + Models.ResearchPanelRelations.TABLE_NAME + "." +
+                Models.ResearchPanelRelations.KEY_ID_PANEL  + " left join " + Models.SpAnaliz.TABLE_NAME + " on " + Models.ResearchPanelRelations.TABLE_NAME + "."
+                + Models.ResearchPanelRelations.KEY_ID_RESEARCH + "=" + Models.SpAnaliz.TABLE_NAME + "." + Models.SpAnaliz.KEY_ID + " where " +
+                Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_IS_ACTIVE + "=?"
+                + " group by " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_ID
+                + ", " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_NAME
+                + " order by " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_NAME;
+
+        Cursor data = db.rawQuery(query, new Integer[] {1});
         return data;
     }
     //READ All_ID_Researchpanel
     public Cursor getItemIdResearchPanel(){
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query = "select " + Models.ResearchPanels.KEY_ID + " from " + Models.ResearchPanels.TABLE_NAME + " order by Name";
+        String query = "select " + Models.ResearchPanels.KEY_ID + " from " + Models.ResearchPanels.TABLE_NAME
+                + " where " + Models.ResearchPanels.KEY_IS_ACTIVE + "=1" + " order by " + Models.ResearchPanels.KEY_NAME + "";
         Cursor data=db.rawQuery(query, null);
         return data;
     }
 
+
     public Cursor getListResearchesByID(String i){
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query="select nameid from sp_analiz where codeid in (select IdResearch from ResearchPanelRelations where IdPanel=?) order by nameid";
+        String query="select " + Models.SpAnaliz.KEY_ID + ", " + Models.SpAnaliz.KEY_NAMEID + " from " + Models.SpAnaliz.TABLE_NAME
+                + " where " + Models.SpAnaliz.KEY_ID + " in (select " + Models.ResearchPanelRelations.KEY_ID_RESEARCH + " from "
+                + Models.ResearchPanelRelations.TABLE_NAME + " where " + Models.ResearchPanelRelations.KEY_ID_PANEL + "=?) and "
+                 + Models.SpAnaliz.KEY_TYPEID + "=0 order by " + Models.SpAnaliz.KEY_NAMEID;
         Cursor cursor = db.rawQuery(query, new String[] {i});
         return cursor;
     }

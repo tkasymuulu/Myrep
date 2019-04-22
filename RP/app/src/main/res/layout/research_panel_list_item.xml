@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/researchPanelTxt"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Аллергический панель только с паралельным фигнуй"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+
+
+    <TextView
+        android:id="@+id/countSpanaliz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="167dp"
+        android:layout_toEndOf="@+id/researchPanelTxt"
+        android:text="00"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/right"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>

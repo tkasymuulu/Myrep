@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.rp.data.DbHelper;
+import com.example.rp.data.ResearchListAdapter;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -32,15 +33,20 @@ public class ResearchListActivity extends AppCompatActivity {
 
         Bundle arguments = getIntent().getExtras();
 
+
+
         Cursor cursor = dbHelper.getListResearchesByID(arguments.get("EXTRA_RP_ID").toString());
+        ResearchListAdapter researchListAdapter = new ResearchListAdapter(ResearchListActivity.this, cursor, 0);
         ArrayList<String> list = new ArrayList<>();
         while (cursor.moveToNext()){
             list.add(cursor.getString(0));
         }
 
+
+
         listViewResearches = findViewById(R.id.listResearches);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        listViewResearches.setAdapter(adapter);
+        adapter = new ArrayAdapter(this, R.layout.research_list_item, list);
+        listViewResearches.setAdapter(researchListAdapter);
 
 
 
