@@ -23,22 +23,20 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="false" />
-    <loaded-nodes>
-      <connection connection-id="5fdc4518-446f-40f6-aa0a-983640e9aa32">
-        <schema name="main" object-types="table, constraint, view, index, dataset trigger, column" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="5fdc4518-446f-40f6-aa0a-983640e9aa32">
-      <console name="rp" type="STANDARD" schema="main" session="Main"><![CDATA[select ResearchPanels._id, ResearchPanels.Name, count(sp_analiz._id) from ResearchPanels left join ResearchPanelRelations on ResearchPanels._id=ResearchPanelRelations.IdPanel left join sp_analiz on ResearchPanelRelations.IdResearch=sp_analiz._id where ResearchPanels.isActive=1 group by ResearchPanels._id, ResearchPanels.Name order by ResearchPanels.Name]]></console>
+    <connection id="cee81239-3d4d-419f-b786-cb987cce653a">
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select * from "ResearchPanels" order by "Name"
+
+select * from sp_analiz where _id=162]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="5fdc4518-446f-40f6-aa0a-983640e9aa32" />
+    <connection id="cee81239-3d4d-419f-b786-cb987cce653a" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -63,9 +61,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="5fdc4518-446f-40f6-aa0a-983640e9aa32" active="true">
+      <connection id="cee81239-3d4d-419f-b786-cb987cce653a" active="true">
         <database>
-          <name value="rp" />
+          <name value="Connection" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -78,7 +76,7 @@
           <port value="" />
           <database value="" />
           <files>
-            <file path="F:\Myrep\RP\app\src\main\assets\rp.db" schema="main" />
+            <file path="F:\Myrep\RP\app\src\main\assets\real.db" schema="main" />
           </files>
           <os-authentication value="false" />
           <empty-authentication value="false" />

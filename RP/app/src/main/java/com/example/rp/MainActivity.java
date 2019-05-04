@@ -3,13 +3,13 @@ package com.example.rp;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import com.example.rp.Model.Models;
 import com.example.rp.data.DbHelper;
 import com.example.rp.data.ResearchPanelAdapter;
@@ -17,6 +17,7 @@ import com.example.rp.data.ResearchPanelAdapter;
 import net.sqlcipher.database.SQLiteDatabase;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,30 +52,15 @@ public class MainActivity extends AppCompatActivity {
             throw mSQLException;
         }
 
+        net.sqlcipher.Cursor str = mDb.rawQuery("SELECT * FROM ResearchPanels ORDER BY ROWID ASC LIMIT 1", null);
+        String[] s =str.getColumnNames();
 
-
+        Log.d("dbtala", "" + Arrays.toString(s));
 
         listView = findViewById(R.id.rpList);
         cursor  = dbHelper.getListResearchPanel();
         ResearchPanelAdapter rpAdapter = new ResearchPanelAdapter(MainActivity.this, cursor, 0);
         listView.setAdapter(rpAdapter);
 
-
-        Cursor cursor = dbHelper.getItemIdResearchPanel();
-        final ArrayList<String> ar_Ids = new ArrayList<>();
-        while (cursor.moveToNext()){
-            ar_Ids.add(cursor.getString(0));
-        }
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent intent = new Intent(MainActivity.this, ResearchListActivity.class);
-                intent.putExtra("EXTRA_RP_ID", ar_Ids.get(position));
-                startActivity(intent);
-
-            }
-        });
     }
 }

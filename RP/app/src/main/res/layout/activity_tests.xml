@@ -1,9 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#eeeeee"
+    android:stretchColumns="*"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TestsActivity">
+    android:layout_height="match_parent">
+    <TableRow android:background="#cccccc"
+        android:padding="5dp">
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Показатель"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ед. изм"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Норма"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
+    </TableRow>
+<ScrollView>
+    <TableRow android:padding="5dp">
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="2012-11-22"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="397"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="19039.21"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+    </TableRow>
+</ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+
+
+
+</TableLayout>

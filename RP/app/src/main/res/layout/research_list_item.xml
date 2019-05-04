@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-
+    android:descendantFocusability="blocksDescendants"
     android:padding="8dp">
 
     <TextView
@@ -18,8 +18,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/unstar"
+        android:background="@android:color/background_light"
         android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        />
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

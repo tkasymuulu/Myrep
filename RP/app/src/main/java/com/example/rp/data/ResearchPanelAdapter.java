@@ -1,20 +1,27 @@
 package com.example.rp.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.rp.MainActivity;
 import com.example.rp.Model.Models;
 import com.example.rp.R;
+import com.example.rp.ResearchListActivity;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 public class ResearchPanelAdapter extends CursorAdapter {
 
     public ResearchPanelAdapter(Context context, Cursor cursor, int flags){
         super(context, cursor, 0);
+
     }
 
     @Override
@@ -23,15 +30,26 @@ public class ResearchPanelAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(final View view, final Context context, Cursor cursor) {
         TextView txtRP = view.findViewById(R.id.researchPanelTxt);
         TextView txtCountSpAnaliz = view.findViewById(R.id.countSpanaliz);
 
+        final String position = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_ID));
         String nameRP = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_NAME));
         String countSpAn = String.valueOf(cursor.getString(2));
 
         txtRP.setText(nameRP);
         txtCountSpAnaliz.setText(countSpAn);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, ResearchListActivity.class);
+                intent.putExtra("EXTRA_RP_ID", position);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

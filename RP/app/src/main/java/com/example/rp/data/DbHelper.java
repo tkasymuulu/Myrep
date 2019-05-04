@@ -1,14 +1,12 @@
 package com.example.rp.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.view.Display;
-
 import com.example.rp.Model.Models;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -157,14 +155,31 @@ public class DbHelper extends SQLiteOpenHelper {
         return data;
     }
 
-
     public Cursor getListResearchesByID(String i){
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query="select " + Models.SpAnaliz.KEY_ID + ", " + Models.SpAnaliz.KEY_NAMEID + " from " + Models.SpAnaliz.TABLE_NAME
+        String query="select " + Models.SpAnaliz.KEY_ID + ", " + Models.SpAnaliz.KEY_NAMEID + ", " + Models.SpAnaliz.KEY_ISFAVORITE +
+                " from " + Models.SpAnaliz.TABLE_NAME
                 + " where " + Models.SpAnaliz.KEY_ID + " in (select " + Models.ResearchPanelRelations.KEY_ID_RESEARCH + " from "
                 + Models.ResearchPanelRelations.TABLE_NAME + " where " + Models.ResearchPanelRelations.KEY_ID_PANEL + "=?) and "
                  + Models.SpAnaliz.KEY_TYPEID + "=0 order by " + Models.SpAnaliz.KEY_NAMEID;
         Cursor cursor = db.rawQuery(query, new String[] {i});
         return cursor;
     }
+
+    public void updateFavByIdSpAnaliz(String fav, String i){
+        SQLiteDatabase db = this.getWritableDatabase(Models.KEY);
+        db.execSQL("update " + Models.SpAnaliz.TABLE_NAME + " set " + Models.SpAnaliz.KEY_ISFAVORITE + "=" + fav + " where " + Models.SpAnaliz.KEY_ID + "="+i);
+        db.close();
+    }
+
+    public Cursor getListTestsByIdSpAnaliz(String i) {
+        SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
+        String query = "select spp._id, spp.nameid, spp.result, (n.ValueFrom || ' - ' || ValueTo) as norma from sp_podanaliz as spp\n" +
+                "  left join normas n on spp._id = n.IdTest\n" +
+                "  left join sp_analiz sa on spp.codeid_analiz = sa._id\n" +
+                "where sa._id=? and n.ValueFrom is not null";
+        Cursor cursor = db.rawQuery(query, new String[] {i});
+        return cursor;
+    }
+
 }
