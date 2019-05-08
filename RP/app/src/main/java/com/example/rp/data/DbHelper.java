@@ -169,12 +169,21 @@ public class DbHelper extends SQLiteOpenHelper {
     public void updateFavByIdSpAnaliz(String fav, String i){
         SQLiteDatabase db = this.getWritableDatabase(Models.KEY);
         db.execSQL("update " + Models.SpAnaliz.TABLE_NAME + " set " + Models.SpAnaliz.KEY_ISFAVORITE + "=" + fav + " where " + Models.SpAnaliz.KEY_ID + "="+i);
-        db.close();
+
+    }
+
+    public Cursor getListResearchesisFAV() {
+        SQLiteDatabase db  = this.getReadableDatabase(Models.KEY);
+        String query = "select " + Models.SpAnaliz.KEY_ID + ", " + Models.SpAnaliz.KEY_NAMEID + ", " + Models.SpAnaliz.KEY_ISFAVORITE +
+        " from " + Models.SpAnaliz.TABLE_NAME
+                + " where " + Models.SpAnaliz.KEY_ISFAVORITE + "=? " + " order by " + Models.SpAnaliz.KEY_NAMEID ;
+        Cursor cursor = db.rawQuery(query, new String[] {"1"});
+        return cursor;
     }
 
     public Cursor getListTestsByIdSpAnaliz(String i) {
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query = "select spp._id, spp.nameid, spp.result, (n.ValueFrom || ' - ' || ValueTo) as norma from sp_podanaliz as spp\n" +
+        String query = "select spp._id, spp.nameid, spp.result, n.ValueFrom as norma from sp_podanaliz as spp\n" +
                 "  left join normas n on spp._id = n.IdTest\n" +
                 "  left join sp_analiz sa on spp.codeid_analiz = sa._id\n" +
                 "where sa._id=? and n.ValueFrom is not null";

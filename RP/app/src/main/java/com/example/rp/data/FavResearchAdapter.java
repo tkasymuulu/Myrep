@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,22 +12,23 @@ import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.rp.Model.Models;
 import com.example.rp.R;
 import com.example.rp.ResearchListActivity;
 import com.example.rp.TestsActivity;
 
 import java.io.IOException;
+import java.util.Arrays;
 
-public class ResearchListAdapter extends CursorAdapter  {
+public class FavResearchAdapter extends CursorAdapter {
 
-    public ResearchListAdapter(Context context, Cursor cursor, int flags){
+    public FavResearchAdapter(Context context, Cursor cursor, int flags){
         super(context, cursor, 0);
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
-
+    public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
 
         if(position % 2 == 0){
@@ -41,13 +43,11 @@ public class ResearchListAdapter extends CursorAdapter  {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-
         return LayoutInflater.from(context).inflate(R.layout.research_list_item, parent, false);
     }
 
     @Override
-    public void bindView(final View view, final Context context, final Cursor cursor) {
-
+    public void bindView(View view, final Context context, Cursor cursor) {
         final ImageButton imageButton = view.findViewById(R.id.iconFav);
         TextView txtSpAn = view.findViewById(R.id.researchTxt);
         final String position = cursor.getString(cursor.getColumnIndexOrThrow(Models.SpAnaliz.KEY_ID));
@@ -94,7 +94,7 @@ public class ResearchListAdapter extends CursorAdapter  {
                     Toast.makeText(context, R.string.del_to_fav, Toast.LENGTH_SHORT).show();
                 }
 
-                Cursor newCursor = dbHelper.getListResearchesByID(ResearchListActivity.getIdRPisRL());
+                Cursor newCursor = dbHelper.getListResearchesisFAV();
                 changeCursor(newCursor);
                 notifyDataSetChanged();
             }

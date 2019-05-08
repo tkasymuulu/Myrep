@@ -23,13 +23,28 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="false" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="cee81239-3d4d-419f-b786-cb987cce653a">
+        <schema name="main" object-types="view, column, table" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="cee81239-3d4d-419f-b786-cb987cce653a">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select * from "ResearchPanels" order by "Name"
-
-select * from sp_analiz where _id=162]]></console>
+      <console name="Connection" type="STANDARD" schema="main" session="Main">select spp._id, spp.nameid, spp.result, n.ValueFrom as norma from sp_podanaliz as spp
+                left join normas n on spp._id = n.IdTest
+                left join sp_analiz sa on spp.codeid_analiz = sa._id
+                where  n.ValueFrom is not null
+                
+                
+                select * from sp_analiz where _id not glob (select codeid_analiz from sp_podanaliz)
+                
+                
+                
+                
+                select * from sp_analiz where nameid like '%арахис%'
+                
+                select * from sp_podanaliz where codeid_analiz=546</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -37,6 +52,9 @@ select * from sp_analiz where _id=162]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="cee81239-3d4d-419f-b786-cb987cce653a" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="cee81239-3d4d-419f-b786-cb987cce653a" dataset="main.ResearchPanels" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -152,7 +170,7 @@ select * from sp_analiz where _id=162]]></console>
     <browser-settings>
       <general>
         <display-mode value="TABBED" />
-        <navigation-history-size value="100" />
+        <navigation-history-size value="0" />
         <show-object-details value="false" />
       </general>
       <filters>

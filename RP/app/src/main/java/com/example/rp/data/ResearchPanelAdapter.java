@@ -6,16 +6,13 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.CursorAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.rp.MainActivity;
 import com.example.rp.Model.Models;
 import com.example.rp.R;
 import com.example.rp.ResearchListActivity;
-
-import static android.support.v4.content.ContextCompat.startActivity;
 
 public class ResearchPanelAdapter extends CursorAdapter {
 
@@ -30,12 +27,11 @@ public class ResearchPanelAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(final View view, final Context context, Cursor cursor) {
+    public void bindView(final View view, final Context context, final Cursor cursor) {
         TextView txtRP = view.findViewById(R.id.researchPanelTxt);
         TextView txtCountSpAnaliz = view.findViewById(R.id.countSpanaliz);
-
         final String position = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_ID));
-        String nameRP = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_NAME));
+        final String nameRP = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_NAME));
         String countSpAn = String.valueOf(cursor.getString(2));
 
         txtRP.setText(nameRP);
@@ -47,6 +43,7 @@ public class ResearchPanelAdapter extends CursorAdapter {
 
                 Intent intent = new Intent(context, ResearchListActivity.class);
                 intent.putExtra("EXTRA_RP_ID", position);
+                intent.putExtra("EXTRA_RP_NAME", nameRP);
                 context.startActivity(intent);
             }
         });
