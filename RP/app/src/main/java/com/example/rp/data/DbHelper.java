@@ -131,17 +131,14 @@ public class DbHelper extends SQLiteOpenHelper {
     public Cursor getListResearchPanel() {
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
 
-        String query = "select " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_ID
-                + ", " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_NAME + ", count(" + Models.SpAnaliz.TABLE_NAME
-                + "." + Models.SpAnaliz.KEY_ID +
-                ") from " + Models.ResearchPanels.TABLE_NAME + " left join " + Models.ResearchPanelRelations.TABLE_NAME + " on "
-                + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_ID + "=" + Models.ResearchPanelRelations.TABLE_NAME + "." +
-                Models.ResearchPanelRelations.KEY_ID_PANEL  + " left join " + Models.SpAnaliz.TABLE_NAME + " on " + Models.ResearchPanelRelations.TABLE_NAME + "."
-                + Models.ResearchPanelRelations.KEY_ID_RESEARCH + "=" + Models.SpAnaliz.TABLE_NAME + "." + Models.SpAnaliz.KEY_ID + " where " +
-                Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_IS_ACTIVE + "=?"
-                + " group by " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_ID
-                + ", " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_NAME
-                + " order by " + Models.ResearchPanels.TABLE_NAME + "." + Models.ResearchPanels.KEY_NAME;
+        String query = "select ResearchPanels._id, ResearchPanels.Name, count(sp_analiz._id) \n" +
+                "from ResearchPanels \n" +
+                "left join ResearchPanelRelations on ResearchPanels._id=ResearchPanelRelations.IdPanel \n" +
+                "left join sp_analiz on ResearchPanelRelations.IdResearch=sp_analiz._id \n" +
+                "where ResearchPanels.isActive=?\n" +
+                "and sp_analiz._id not in (select codeid_analiz from sp_podanaliz where _id not in (select idTest from normas)) \n" +
+                "group by ResearchPanels._id, ResearchPanels.Name \n" +
+                "order by ResearchPanels.Name\n";
 
         Cursor data = db.rawQuery(query, new Integer[] {1});
         return data;
@@ -157,11 +154,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public Cursor getListResearchesByID(String i){
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query="select " + Models.SpAnaliz.KEY_ID + ", " + Models.SpAnaliz.KEY_NAMEID + ", " + Models.SpAnaliz.KEY_ISFAVORITE +
-                " from " + Models.SpAnaliz.TABLE_NAME
-                + " where " + Models.SpAnaliz.KEY_ID + " in (select " + Models.ResearchPanelRelations.KEY_ID_RESEARCH + " from "
-                + Models.ResearchPanelRelations.TABLE_NAME + " where " + Models.ResearchPanelRelations.KEY_ID_PANEL + "=?) and "
-                 + Models.SpAnaliz.KEY_TYPEID + "=0 order by " + Models.SpAnaliz.KEY_NAMEID;
+        String query="select _id, nameid, isFavorite from sp_analiz where _id in " +
+                "(select IdResearch from ResearchPanelRelations where IdPanel=?) " +
+                "and _id not in (select codeid_analiz from sp_podanaliz where _id not in (select idTest from normas)) " +
+                "and typeid=0 order by nameid";
         Cursor cursor = db.rawQuery(query, new String[] {i});
         return cursor;
     }
