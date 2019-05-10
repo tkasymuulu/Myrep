@@ -6,23 +6,14 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.AdapterView;
 import android.widget.ListView;
-
 import com.example.rp.Model.Models;
 import com.example.rp.data.DbHelper;
 import com.example.rp.data.ResearchPanelAdapter;
-
 import net.sqlcipher.database.SQLiteDatabase;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
 
     Cursor cursor;
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent  intent = new Intent(this, FavResearchActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.search:
+                Intent intent1 = new Intent(this, SearchResearchActivity.class);
+                startActivity(intent1);
         }
         return super.onOptionsItemSelected(item);
     }

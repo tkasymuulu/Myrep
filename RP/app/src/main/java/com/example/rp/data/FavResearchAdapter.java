@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,10 @@ import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.rp.Model.Models;
 import com.example.rp.R;
-import com.example.rp.ResearchListActivity;
 import com.example.rp.TestsActivity;
-
 import java.io.IOException;
-import java.util.Arrays;
 
 public class FavResearchAdapter extends CursorAdapter {
 

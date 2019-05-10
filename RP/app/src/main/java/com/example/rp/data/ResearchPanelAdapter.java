@@ -6,10 +6,9 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+
 import com.example.rp.Model.Models;
 import com.example.rp.R;
 import com.example.rp.ResearchListActivity;

@@ -6,8 +6,8 @@
         android:icon="@drawable/search"
         app:showAsAction="ifRoom|withText"
         android:orderInCategory="1"
-        android:title="Поиск исследований"
-        app:actionViewClass="android.widget.SearchView"/>
+        />
+
     <item
         android:id="@+id/favorite"
         android:orderInCategory="2"

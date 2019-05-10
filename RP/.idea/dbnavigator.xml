@@ -31,7 +31,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="cee81239-3d4d-419f-b786-cb987cce653a">
-      <console name="Connection" type="STANDARD" schema="main" session="Main">select spp._id, spp.nameid, spp.result, n.ValueFrom as norma from sp_podanaliz as spp
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select spp._id, spp.nameid, spp.result, n.ValueFrom as norma from sp_podanaliz as spp
                 left join normas n on spp._id = n.IdTest
                 left join sp_analiz sa on spp.codeid_analiz = sa._id
                 where  n.ValueFrom is not null
@@ -44,7 +44,10 @@
                 
                 select * from sp_analiz where nameid like '%арахис%'
                 
-                select * from sp_podanaliz where codeid_analiz=546</console>
+                
+                select * from "ResearchPanels" order by "Name"
+
+update "ResearchPanels" set "isActive"=0 where _id in (16, 20)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
