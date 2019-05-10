@@ -12,7 +12,9 @@ import android.widget.ListView;
 import com.example.rp.Model.Models;
 import com.example.rp.data.DbHelper;
 import com.example.rp.data.ResearchPanelAdapter;
+
 import net.sqlcipher.database.SQLiteDatabase;
+
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.search:
-                Intent intent1 = new Intent(this, SearchResearchActivity.class);
-                startActivity(intent1);
+                CustomDialogFragment dialogFragment = new CustomDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(), "sososik");
         }
         return super.onOptionsItemSelected(item);
     }

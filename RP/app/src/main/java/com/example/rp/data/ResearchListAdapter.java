@@ -30,7 +30,7 @@ public class ResearchListAdapter extends CursorAdapter  {
         View view = super.getView(position, convertView, parent);
 
         if(position % 2 == 0){
-            view.setBackgroundColor(Color.rgb(238, 233, 233));
+            view.setBackgroundColor(Color.rgb(243, 235, 244));
         }
         else {
             view.setBackgroundColor(Color.rgb(255, 255, 255));
