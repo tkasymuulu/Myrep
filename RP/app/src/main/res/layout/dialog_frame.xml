@@ -3,9 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     >
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <RadioButton
+            android:id="@+id/radioResearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="по Исследованиям"
+            android:layout_marginBottom="16dp"
+            />
 
+        <RadioButton
+            android:id="@+id/radioTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="по Показателям"
+            android:layout_marginBottom="16dp"/>
+    </RadioGroup>
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/searchInputTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Поисковая фраза"
+        >
+        <requestFocus/>
+    </MultiAutoCompleteTextView>
 
 </LinearLayout>

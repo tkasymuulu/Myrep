@@ -26,7 +26,6 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:text="00"
-        android:textAlignment="center"
         android:textColor="@color/colorFAV"
         android:textSize="18sp" />
 

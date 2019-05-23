@@ -7,6 +7,8 @@ import com.example.rp.Model.Models;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
+import net.sqlcipher.database.SqliteWrapper;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -136,19 +138,11 @@ public class DbHelper extends SQLiteOpenHelper {
                 "left join ResearchPanelRelations on ResearchPanels._id=ResearchPanelRelations.IdPanel \n" +
                 "left join sp_analiz on ResearchPanelRelations.IdResearch=sp_analiz._id \n" +
                 "where ResearchPanels.isActive=?\n" +
-                "and sp_analiz._id not in (select codeid_analiz from sp_podanaliz where _id not in (select idTest from normas)) \n" +
+               "and sp_analiz._id  in (select codeid_analiz from sp_podanaliz where _id  in (select idTest from normas)) \n" +
                 "group by ResearchPanels._id, ResearchPanels.Name \n" +
                 "order by ResearchPanels.Name\n";
 
         Cursor data = db.rawQuery(query, new Integer[] {1});
-        return data;
-    }
-    //READ All_ID_Researchpanel
-    public Cursor getItemIdResearchPanel(){
-        SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query = "select " + Models.ResearchPanels.KEY_ID + " from " + Models.ResearchPanels.TABLE_NAME
-                + " where " + Models.ResearchPanels.KEY_IS_ACTIVE + "=1" + " order by " + Models.ResearchPanels.KEY_NAME + "";
-        Cursor data=db.rawQuery(query, null);
         return data;
     }
 
@@ -156,7 +150,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
         String query="select _id, nameid, isFavorite from sp_analiz where _id in " +
                 "(select IdResearch from ResearchPanelRelations where IdPanel=?) " +
-                "and _id not in (select codeid_analiz from sp_podanaliz where _id not in (select idTest from normas)) " +
+                "and _id in (select codeid_analiz from sp_podanaliz where _id in (select idTest from normas)) " +
                 "and typeid=0 order by nameid";
         Cursor cursor = db.rawQuery(query, new String[] {i});
         return cursor;
@@ -183,8 +177,20 @@ public class DbHelper extends SQLiteOpenHelper {
                 "  left join normas n on spp._id = n.IdTest\n" +
                 "  left join sp_analiz sa on spp.codeid_analiz = sa._id\n" +
                 "where sa._id=? and n.ValueFrom is not null";
+
         Cursor cursor = db.rawQuery(query, new String[] {i});
         return cursor;
+    }
+
+    public Cursor getSearchResearch() {
+        SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
+        String query = "select _id, nameid from sp_analiz where _id in \n" +
+                "                (select IdResearch from ResearchPanelRelations) \n" +
+                "                and _id  in (select codeid_analiz from sp_podanaliz where _id   in (select idTest from normas))\n" +
+                "                order by nameid";
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+
     }
 
 }

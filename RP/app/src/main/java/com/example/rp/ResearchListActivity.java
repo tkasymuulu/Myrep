@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.rp.data.DbHelper;
 import com.example.rp.data.ResearchListAdapter;
-
 import java.io.IOException;
 
 public class ResearchListActivity extends AppCompatActivity {
@@ -37,13 +36,11 @@ public class ResearchListActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.search:
-                Intent intent1 = new Intent(this, SearchResearchActivity.class);
+                Intent intent1 = new Intent(this, SearchActivity.class);
                 startActivity(intent1);
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,10 +62,6 @@ public class ResearchListActivity extends AppCompatActivity {
         actionBar.setTitle(arguments.get("EXTRA_RP_NAME").toString());
 
         arg = arguments.get("EXTRA_RP_ID").toString();
-
-
-
-
 
         try {
             dbHelper = new DbHelper(this);

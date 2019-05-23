@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.search:
                 CustomDialogFragment dialogFragment = new CustomDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(), "sososik");
+                dialogFragment.show(getSupportFragmentManager(), "custom");
         }
         return super.onOptionsItemSelected(item);
     }
