@@ -40,9 +40,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.search:
-                CustomDialogFragment dialogFragment = new CustomDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(), "custom");
+               CustomDialogFragment dialogFragment = new CustomDialogFragment();
+               dialogFragment.show(getSupportFragmentManager(), "custom");
+               return true;
+            case android.R.id.home:
+                this.finish();
+                return  true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

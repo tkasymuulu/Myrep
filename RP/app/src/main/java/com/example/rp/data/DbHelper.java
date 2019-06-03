@@ -1,13 +1,11 @@
 package com.example.rp.data;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import com.example.rp.Model.Models;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
-import net.sqlcipher.database.SqliteWrapper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -173,7 +171,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public Cursor getListTestsByIdSpAnaliz(String i) {
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query = "select spp._id, spp.nameid, spp.result, n.ValueFrom as norma from sp_podanaliz as spp\n" +
+        String query = "select spp._id, spp.nameid, spp.result, (n.ValueFrom || ' - ' || n.ValueTo) as norma  from sp_podanaliz as spp\n" +
                 "  left join normas n on spp._id = n.IdTest\n" +
                 "  left join sp_analiz sa on spp.codeid_analiz = sa._id\n" +
                 "where sa._id=? and n.ValueFrom is not null";
@@ -192,5 +190,14 @@ public class DbHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
+
+    public Cursor getSearchTest() {
+        SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
+        String query = "select _id, nameid  from sp_podanaliz where _id in (select idTest from normas)";
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+
 
 }

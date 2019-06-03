@@ -27,17 +27,18 @@ public class ResearchListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                this.finish();
-                return  true;
+        switch (id){
             case R.id.favorite:
-                Intent intent = new Intent(this, FavResearchActivity.class);
+                Intent  intent = new Intent(this, FavResearchActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.search:
-                Intent intent1 = new Intent(this, SearchActivity.class);
-                startActivity(intent1);
+                CustomDialogFragment dialogFragment = new CustomDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(), "custom");
+                return true;
+            case android.R.id.home:
+                this.finish();
+                return  true;
         }
         return super.onOptionsItemSelected(item);
     }

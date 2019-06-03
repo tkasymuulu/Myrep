@@ -3,6 +3,7 @@ package com.example.rp;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 import com.example.rp.Model.Models;
 import com.example.rp.data.DbHelper;
 import java.io.IOException;
@@ -38,20 +38,51 @@ public class CustomDialogFragment extends DialogFragment{
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.dialog_frame, null);
 
-        List<String> listRes = new ArrayList<>();
-        MultiAutoCompleteTextView multiAutoCompleteTextView = view.findViewById(R.id.searchInputTxt);
-        Cursor cursor = dbHelper.getSearchResearch();
+        final List<String> listRes = new ArrayList<>();
+        final List<String> listTest = new ArrayList<>();
+        final MultiAutoCompleteTextView multiAutoCompleteTextView = view.findViewById(R.id.searchInputTxt);
+        final Cursor cursorRes = dbHelper.getSearchResearch();
+        final Cursor cursorTest = dbHelper.getSearchTest();
 
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast()) {
-            listRes.add(cursor.getString(cursor.getColumnIndex(Models.SpAnaliz.KEY_NAMEID))); //add the item
-            cursor.moveToNext();
-        }
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, listRes);
+        final RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-        multiAutoCompleteTextView.setAdapter(arrayAdapter);
-        multiAutoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+                switch (checkedId) {
+                    case R.id.radioResearch:
+                        listRes.clear();
+                        cursorRes.moveToFirst();
+                        while(!cursorRes.isAfterLast()) {
+                            listRes.add(cursorRes.getString(cursorRes.getColumnIndex(Models.SpAnaliz.KEY_NAMEID)));
+                            cursorRes.moveToNext();
+                            ArrayAdapter arrayAdapterRes = new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, listRes);
+                            multiAutoCompleteTextView.setAdapter(arrayAdapterRes);
+                            multiAutoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+
+                        }
+                        break;
+                    case R.id.radioTest:
+                        listTest.clear();
+                        cursorTest.moveToFirst();
+                        while(!cursorTest.isAfterLast()) {
+                            listTest.add(cursorTest.getString(cursorTest.getColumnIndex(Models.SpPodanaliz.KEY_NAMEID)));
+                            cursorTest.moveToNext();
+                            ArrayAdapter arrayAdapterRes = new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, listTest);
+                            multiAutoCompleteTextView.setAdapter(arrayAdapterRes);
+                            multiAutoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        final Intent intent = new Intent(getActivity(), SearchActivity.class);
 
         return builder.setTitle("Поиск")
                 .setView(view)
@@ -60,23 +91,14 @@ public class CustomDialogFragment extends DialogFragment{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                       final RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
-                       final int id = radioGroup.getCheckedRadioButtonId();
+                        intent.putExtra("EXTRA_MSG", multiAutoCompleteTextView.getText());
+                        startActivity(intent);
 
-                        switch (id) {
-                            case R.id.radioResearch:
-                                Toast.makeText(getActivity(), "Res", Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.radioTest:
-                                Toast.makeText(getActivity(), "Test", Toast.LENGTH_SHORT).show();
-                                break;
-                                default:
-                                    break;
-                        }
                     }
                 })
                 .create();
     }
 
-
 }
+
+

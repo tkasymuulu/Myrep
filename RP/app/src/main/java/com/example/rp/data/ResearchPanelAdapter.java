@@ -28,13 +28,13 @@ public class ResearchPanelAdapter extends CursorAdapter {
     @Override
     public void bindView(final View view, final Context context, final Cursor cursor) {
         TextView txtRP = view.findViewById(R.id.researchPanelTxt);
-        TextView txtCountSpAnaliz = view.findViewById(R.id.countSpanaliz);
+        //TextView txtCountSpAnaliz = view.findViewById(R.id.countSpanaliz);
         final String position = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_ID));
         final String nameRP = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_NAME));
         String countSpAn = String.valueOf(cursor.getString(2));
 
         txtRP.setText(nameRP);
-        txtCountSpAnaliz.setText(countSpAn);
+        //txtCountSpAnaliz.setText(countSpAn);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

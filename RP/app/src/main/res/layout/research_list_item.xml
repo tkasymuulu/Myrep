@@ -18,6 +18,7 @@
         android:layout_toStartOf="@+id/iconFav"
         android:text="Аллергический панель только"
         android:textColor="@android:color/black"
+        android:fontFamily="@font/roboto"
         android:textSize="18sp"
         tools:ignore="NotSibling" />
 

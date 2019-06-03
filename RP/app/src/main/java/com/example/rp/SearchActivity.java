@@ -31,11 +31,22 @@ public class SearchActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Поиск по исследованиям");
+        actionBar.setTitle("Результаты поиска");
+
+        TextView textView = findViewById(R.id.txt);
 
         Bundle arguments = getIntent().getExtras();
 
-        TextView textView = findViewById(R.id.txt);
-        textView.setText(arguments.get("EXTRA_MSG").toString());
+        String get_msg = arguments.get("EXTRA_MSG").toString();
+        String final_msg = get_msg.substring(0, get_msg.length() - 2);
+        if (final_msg.length()<=0) {
+            textView.setText("Пусто");
+        }
+            else {
+
+            textView.setText(final_msg);
+        }
+
+
     }
 }

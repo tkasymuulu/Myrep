@@ -27,7 +27,7 @@ public class FavResearchAdapter extends CursorAdapter {
         View view = super.getView(position, convertView, parent);
 
         if(position % 2 == 0){
-            view.setBackgroundColor(Color.rgb(238, 233, 233));
+            view.setBackgroundColor(Color.rgb(244, 251, 252));
         }
         else {
             view.setBackgroundColor(Color.rgb(255, 255, 255));
