@@ -1,4 +1,4 @@
-package com.example.rp.data;
+package com.example.rp.Adapters;
 
 import android.content.Context;
 import android.database.Cursor;

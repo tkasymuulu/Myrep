@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.rp.data.DbHelper;
-import com.example.rp.data.FavResearchAdapter;
+import com.example.rp.Adapters.FavResearchAdapter;
 
 import java.io.IOException;
 

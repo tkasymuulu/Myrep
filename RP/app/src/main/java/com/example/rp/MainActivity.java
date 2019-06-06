@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import com.example.rp.Model.Models;
 import com.example.rp.data.DbHelper;
-import com.example.rp.data.ResearchPanelAdapter;
+import com.example.rp.Adapters.ResearchPanelAdapter;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.search:
-               CustomDialogFragment dialogFragment = new CustomDialogFragment();
-               dialogFragment.show(getSupportFragmentManager(), "custom");
+               SearchDialog searchDialog = new SearchDialog();
+               searchDialog.show(getSupportFragmentManager(), "");
                return true;
             case android.R.id.home:
                 this.finish();

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FavResearchActivity"></activity>
-        <activity android:name=".SearchActivity" />
+        <activity android:name=".SearchResActivity" />
         <activity android:name=".TestsActivity" />
         <activity android:name=".ResearchListActivity" />
         <activity android:name=".MainActivity">

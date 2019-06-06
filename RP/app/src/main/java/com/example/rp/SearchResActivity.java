@@ -1,22 +1,25 @@
 package com.example.rp;
 
 import android.database.Cursor;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import com.example.rp.Adapters.SearchResAdapter;
 import com.example.rp.data.DbHelper;
-import com.example.rp.Adapters.TestAdapter;
-
 import java.io.IOException;
 
-public class TestsActivity extends AppCompatActivity {
+public class SearchResActivity extends AppCompatActivity {
 
-    private DbHelper dbHelper;
-    private ListView listViewTests;
+    DbHelper dbHelper;
+    ListView listView;
+
+    static String final_msg;
+
+    public static String getIdRPisRL (){
+        return final_msg;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -24,7 +27,7 @@ public class TestsActivity extends AppCompatActivity {
         switch (id) {
             case android.R.id.home:
                 this.finish();
-                return  true;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -32,14 +35,16 @@ public class TestsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tests);
+        setContentView(R.layout.activity_res_search);
 
         Bundle arguments = getIntent().getExtras();
+        String get_msg = arguments.get("EXTRA_MSG").toString();
+        final_msg = get_msg;
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(arguments.get("EXTRA_RES_NAME").toString());
+        actionBar.setTitle("Результаты поиска: " + get_msg);
 
         try {
             dbHelper = new DbHelper(this);
@@ -47,10 +52,11 @@ public class TestsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Cursor cursor = dbHelper.getListTestsByIdSpAnaliz(arguments.get("EXTRA_RES_ID").toString());
-        TestAdapter testAdapter = new TestAdapter(TestsActivity.this, cursor, 0);
-        listViewTests = findViewById(R.id.listTests);
-        listViewTests.setAdapter(testAdapter);
+        Cursor cursor = dbHelper.getResultSearchByRes(get_msg);
+        SearchResAdapter searchResAdapter = new SearchResAdapter(this, cursor, 0);
+        listView = findViewById(R.id.list_search_res);
+        listView.setAdapter(searchResAdapter);
+
 
     }
 }

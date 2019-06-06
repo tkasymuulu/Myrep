@@ -2,6 +2,8 @@ package com.example.rp.data;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.widget.CursorAdapter;
+
 import com.example.rp.Model.Models;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteDatabase;
@@ -198,6 +200,18 @@ public class DbHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getResultSearchByRes(String i){
+        SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
+        String query = "select _id, nameid, isFavorite from sp_analiz where nameid like ? " +
+                "and _id in (select codeid_analiz from sp_podanaliz where _id in (select idTest from normas)) " +
+                "and typeid=0 order by nameid";
+        Cursor cursor  = db.rawQuery(query, new String[] {"%" + i + "%"});
+        return cursor;
+    }
 
+    public Cursor getResultSearchByNameTest(String i){
+        SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
+        String query = "select _id, nameid from sp_podanaliz where nameid like ? and "
+    }
 
 }

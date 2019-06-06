@@ -1,4 +1,4 @@
-package com.example.rp.data;
+package com.example.rp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +31,7 @@ public class ResearchPanelAdapter extends CursorAdapter {
         //TextView txtCountSpAnaliz = view.findViewById(R.id.countSpanaliz);
         final String position = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_ID));
         final String nameRP = cursor.getString(cursor.getColumnIndex(Models.ResearchPanels.KEY_NAME));
-        String countSpAn = String.valueOf(cursor.getString(2));
+        //String countSpAn = String.valueOf(cursor.getString(2));
 
         txtRP.setText(nameRP);
         //txtCountSpAnaliz.setText(countSpAn);

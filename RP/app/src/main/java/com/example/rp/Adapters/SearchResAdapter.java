@@ -1,52 +1,42 @@
-package com.example.rp.data;
+package com.example.rp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.example.rp.Model.Models;
 import com.example.rp.R;
-import com.example.rp.ResearchListActivity;
+import com.example.rp.SearchResActivity;
 import com.example.rp.TestsActivity;
+import com.example.rp.data.DbHelper;
 
 import java.io.IOException;
 
-public class ResearchListAdapter extends CursorAdapter  {
+import es.dmoral.toasty.Toasty;
 
-    public ResearchListAdapter(Context context, Cursor cursor, int flags){
-        super(context, cursor, 0);
+public class SearchResAdapter extends CursorAdapter {
+
+    public SearchResAdapter(Context context, Cursor c, int flags) {
+        super(context, c, flags);
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
-
-        View view = super.getView(position, convertView, parent);
-
-        if(position % 2 == 0){
-            view.setBackgroundColor(Color.rgb(244, 251, 252));
-        }
-        else {
-            view.setBackgroundColor(Color.rgb(255, 255, 255));
-        }
-        view.setTag(position);
-        return view;
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return super.getView(position, convertView, parent);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-
         return LayoutInflater.from(context).inflate(R.layout.research_list_item, parent, false);
     }
 
     @Override
-    public void bindView(final View view, final Context context, final Cursor cursor) {
+    public void bindView(View view, final Context context, Cursor cursor) {
 
         final ImageButton imageButton = view.findViewById(R.id.iconFav);
         TextView txtSpAn = view.findViewById(R.id.researchTxt);
@@ -86,19 +76,20 @@ public class ResearchListAdapter extends CursorAdapter  {
                 if(isFav.equals("0")) {
                     imageButton.setImageResource(R.drawable.star);
                     dbHelper.updateFavByIdSpAnaliz("1", position);
-                    Toast.makeText(context, R.string.add_to_fav, Toast.LENGTH_SHORT).show();
+                    Toasty.custom(context, R.string.add_to_fav, R.drawable.ic_check_white_24dp, R.color.colorPrimaryDark, Toasty.LENGTH_SHORT, true, true).show();
 
                 } else if (isFav.equals("1")) {
                     imageButton.setImageResource(R.drawable.unstar);
                     dbHelper.updateFavByIdSpAnaliz("0", position);
-                    Toast.makeText(context, R.string.del_to_fav, Toast.LENGTH_SHORT).show();
+                    Toasty.custom(context, R.string.del_to_fav, R.drawable.ic_check_white_24dp, R.color.colorPrimaryDark, Toasty.LENGTH_SHORT, true, true).show();
                 }
 
-                Cursor newCursor = dbHelper.getListResearchesByID(ResearchListActivity.getIdRPisRL());
+                Cursor newCursor = dbHelper.getResultSearchByRes(SearchResActivity.getIdRPisRL());
                 changeCursor(newCursor);
                 notifyDataSetChanged();
             }
 
         });
+
     }
 }

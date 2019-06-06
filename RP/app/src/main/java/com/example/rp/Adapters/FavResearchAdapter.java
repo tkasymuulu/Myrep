@@ -1,4 +1,4 @@
-package com.example.rp.data;
+package com.example.rp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,11 @@ import android.widget.Toast;
 import com.example.rp.Model.Models;
 import com.example.rp.R;
 import com.example.rp.TestsActivity;
+import com.example.rp.data.DbHelper;
+
 import java.io.IOException;
+
+import es.dmoral.toasty.Toasty;
 
 public class FavResearchAdapter extends CursorAdapter {
 
@@ -81,12 +85,12 @@ public class FavResearchAdapter extends CursorAdapter {
                 if(isFav.equals("0")) {
                     imageButton.setImageResource(R.drawable.star);
                     dbHelper.updateFavByIdSpAnaliz("1", position);
-                    Toast.makeText(context, R.string.add_to_fav, Toast.LENGTH_SHORT).show();
+                    Toasty.custom(context, R.string.add_to_fav, R.drawable.ic_check_white_24dp, R.color.colorPrimaryDark, Toasty.LENGTH_SHORT, true, true).show();
 
                 } else if (isFav.equals("1")) {
                     imageButton.setImageResource(R.drawable.unstar);
                     dbHelper.updateFavByIdSpAnaliz("0", position);
-                    Toast.makeText(context, R.string.del_to_fav, Toast.LENGTH_SHORT).show();
+                    Toasty.custom(context, R.string.del_to_fav, R.drawable.ic_check_white_24dp, R.color.colorPrimaryDark, Toasty.LENGTH_SHORT, true, true).show();
                 }
 
                 Cursor newCursor = dbHelper.getListResearchesisFAV();

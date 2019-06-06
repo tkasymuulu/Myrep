@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.rp.data.DbHelper;
-import com.example.rp.data.ResearchListAdapter;
+import com.example.rp.Adapters.ResearchListAdapter;
 import java.io.IOException;
 
 public class ResearchListActivity extends AppCompatActivity {
@@ -33,8 +33,8 @@ public class ResearchListActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.search:
-                CustomDialogFragment dialogFragment = new CustomDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(), "custom");
+                SearchDialog searchDialog = new SearchDialog();
+                searchDialog.show(getSupportFragmentManager(), "");
                 return true;
             case android.R.id.home:
                 this.finish();
@@ -73,7 +73,6 @@ public class ResearchListActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.getListResearchesByID(arguments.get("EXTRA_RP_ID").toString());
         ResearchListAdapter researchListAdapter = new ResearchListAdapter(ResearchListActivity.this, cursor, 0);
         listViewResearches = findViewById(R.id.listResearches);
-        adapter = new ArrayAdapter(this, R.layout.research_list_item);
         listViewResearches.setAdapter(researchListAdapter);
 
     }
