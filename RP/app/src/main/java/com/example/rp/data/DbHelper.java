@@ -2,9 +2,9 @@ package com.example.rp.data;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.widget.CursorAdapter;
 
 import com.example.rp.Model.Models;
+
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
@@ -211,7 +211,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public Cursor getResultSearchByNameTest(String i){
         SQLiteDatabase db = this.getReadableDatabase(Models.KEY);
-        String query = "select _id, nameid from sp_podanaliz where nameid like ? and "
+        String query = "select spp._id, spp.nameid, spp.result, (n.ValueFrom || ' - ' || n.ValueTo) as norma  from sp_podanaliz as spp\n" +
+                "  left join normas n on spp._id = n.IdTest\n" +
+                " where spp.nameid like ? and n.ValueFrom is not null";
+        Cursor cursor = db.rawQuery(query, new String[] {"%" + i + "%"});
+        return cursor;
     }
-
 }

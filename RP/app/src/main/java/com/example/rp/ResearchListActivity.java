@@ -11,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.rp.data.DbHelper;
 import com.example.rp.Adapters.ResearchListAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.io.IOException;
 
 public class ResearchListActivity extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class ResearchListActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     DbHelper dbHelper;
     static String arg;
+    private AdView mAdView;
 
     public static String getIdRPisRL (){
         return arg;
@@ -53,6 +57,10 @@ public class ResearchListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_research_list);
+
+        mAdView = findViewById(R.id.adViewResList);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

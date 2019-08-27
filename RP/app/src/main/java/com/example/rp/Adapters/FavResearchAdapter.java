@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.example.rp.Model.Models;
 import com.example.rp.R;
 import com.example.rp.TestsActivity;

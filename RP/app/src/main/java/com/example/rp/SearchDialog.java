@@ -32,14 +32,6 @@ public class SearchDialog extends DialogFragment
 
     DbHelper dbHelper;
 
-    // You need an empty constructor: "All subclasses of Fragment must include a public empty constructor. "
-    // like it's described in the Fragment API -> so create a new Insatnce with this static methjod
-
-    /*public static SearchDialog newInstance(boolean enableButton){
-        mEnableButton = enableButton;
-        return new SearchDialog();
-    }*/
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
 
@@ -138,12 +130,12 @@ public class SearchDialog extends DialogFragment
                     switch (radioGroup.getCheckedRadioButtonId()){
                         case R.id.radioResearch:
                             Intent intentRes = new Intent(getActivity(), SearchResActivity.class);
-                            intentRes.putExtra("EXTRA_MSG", multiAutoCompleteTextView.getText());
+                            intentRes.putExtra("EXTRA_MSG_RES", multiAutoCompleteTextView.getText());
                             startActivity(intentRes);
                             break;
                         case R.id.radioTest:
-                            Intent intentTest = new Intent(getActivity(), TestsActivity.class);
-                            intentTest.putExtra("EXTRA_MSG", multiAutoCompleteTextView.getText());
+                            Intent intentTest = new Intent(getActivity(), SearchTestActivity.class);
+                            intentTest.putExtra("EXTRA_MSG_TEST", multiAutoCompleteTextView.getText());
                             startActivity(intentTest);
 
                     }
@@ -159,9 +151,5 @@ public class SearchDialog extends DialogFragment
         return alertDialog;
     }
 
-    /*@Override
-    public void onStart(){
-        super.onStart();
-        dialog.getButton(Dialog.BUTTON_POSITIVE).setEnabled(mEnableButton);
-    }*/
+
 }

@@ -12,6 +12,9 @@ import android.widget.ListView;
 import com.example.rp.Model.Models;
 import com.example.rp.data.DbHelper;
 import com.example.rp.Adapters.ResearchPanelAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private DbHelper dbHelper;
     private SQLiteDatabase mDb;
     private ListView listView;
+
+    private AdView mAdView;
 
     Cursor cursor;
 
@@ -55,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        mAdView = findViewById(R.id.adViewMain);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Панели");

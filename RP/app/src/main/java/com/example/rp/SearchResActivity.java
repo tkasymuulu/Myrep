@@ -38,7 +38,7 @@ public class SearchResActivity extends AppCompatActivity {
         setContentView(R.layout.activity_res_search);
 
         Bundle arguments = getIntent().getExtras();
-        String get_msg = arguments.get("EXTRA_MSG").toString();
+        String get_msg = arguments.get("EXTRA_MSG_RES").toString();
         final_msg = get_msg;
 
         ActionBar actionBar = getSupportActionBar();
