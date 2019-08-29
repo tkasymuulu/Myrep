@@ -10,7 +10,7 @@ class Normas : SugarRecord {
 
     constructor()
 
-    constructor(ID: Long, ID_TEST: Int, VALUE_FROM: String, VALUE_TO: String) : super() {
+    constructor(ID: Long, ID_TEST: Int, VALUE_FROM: String, VALUE_TO: String)  {
         this.ID = ID
         this.ID_TEST = ID_TEST
         this.VALUE_FROM = VALUE_FROM

@@ -3,6 +3,7 @@ package com.tala.healthifyapp.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -10,6 +11,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.tala.healthifyapp.R
 import com.tala.healthifyapp.adapters.ResearhesAdapter
+import com.tala.healthifyapp.helper.toastShort
 import com.tala.healthifyapp.presenters.ResearchesPresenter
 import com.tala.healthifyapp.views.ResearchesView
 import kotlinx.android.synthetic.main.activity_researches.*
@@ -54,8 +56,10 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener{_,_,position ->
 
             val intent = Intent(this, TestsActivity::class.java)
-            intent.putExtra("EXTRA_ID_RES", adapterRes[position].ID)
-            startActivity(intent)
+
+            startActivity(intent.putExtra("EXTRA_ID_RES", adapterRes[position].ID.toString()))
+
+            //toastShort(adapterRes[position].ID.toString())
         }
 
     }

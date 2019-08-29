@@ -23,13 +23,8 @@ open class ResearchesPresenter(private val idResbyGrRes: String) : MvpPresenter<
 
         val spAnaliz = SugarRecord.findById(SpAnaliz::class.java, idRes)
 
-        if(spAnaliz.IsFAVORITE==0) {
-            spAnaliz.IsFAVORITE = 1
-
-        } else {
-            spAnaliz.IsFAVORITE = 0
-
-        }
+        if(spAnaliz.IsFAVORITE==0) { spAnaliz.IsFAVORITE = 1 }
+        else { spAnaliz.IsFAVORITE = 0 }
 
         spAnaliz.save()
 
