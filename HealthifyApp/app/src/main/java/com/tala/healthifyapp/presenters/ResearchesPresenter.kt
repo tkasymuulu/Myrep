@@ -14,15 +14,17 @@ open class ResearchesPresenter(private val idResbyGrRes: String) : MvpPresenter<
     fun sendListResearches(): List<SpAnaliz> {
         return SugarRecord.findWithQuery(SpAnaliz::class.java,"SELECT ID, NAMEID, IS_FAVORITE FROM SP_ANALIZ WHERE ID IN " +
                                                                     "(SELECT ID_RESEARCH FROM RESEARCH_PANEL_RELATIONS " +
-                                                                    "WHERE ID_PANEL=$idResbyGrRes)  ORDER BY NAMEID")
+                                                                    "WHERE ID_PANEL=$idResbyGrRes) AND TYPEID=1 ORDER BY NAMEID")
     }
 
     fun updateFavClick(idRes: Long) {
 
         val spAnaliz = SugarRecord.findById(SpAnaliz::class.java, idRes)
 
-        if(spAnaliz.IsFAVORITE==0) { spAnaliz.IsFAVORITE = 1 }
-        else { spAnaliz.IsFAVORITE = 0 }
+        when (spAnaliz.IsFAVORITE) {
+            0 -> spAnaliz.IsFAVORITE = 1
+            else -> spAnaliz.IsFAVORITE = 0
+        }
 
         spAnaliz.save()
 

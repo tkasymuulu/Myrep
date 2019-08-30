@@ -34,7 +34,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //Custom Snackbar
-    implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
+    implementation 'com.andrognito.flashbar:flashbar:1.0.3'
 
     //BaseRecyclerView
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'

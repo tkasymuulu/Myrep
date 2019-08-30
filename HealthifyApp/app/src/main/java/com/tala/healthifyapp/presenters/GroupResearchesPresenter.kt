@@ -10,7 +10,7 @@ import com.tala.healthifyapp.views.GroupResearchesView
 open class GroupResearchesPresenter: MvpPresenter<GroupResearchesView>() {
 
     fun sendListGrResPanel(): List<ResearchPanels> {
-        return SugarRecord.find(ResearchPanels::class.java, "IS_ACTIVE = ?", "1")
+        return SugarRecord.findWithQuery(ResearchPanels::class.java, "SELECT ID, NAME FROM RESEARCH_PANELS WHERE IS_ACTIVE = 1 ORDER BY NAME")
 
     }
 }

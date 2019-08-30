@@ -3,8 +3,6 @@ package com.tala.healthifyapp.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -15,15 +13,11 @@ import com.tala.healthifyapp.helper.toastShort
 import com.tala.healthifyapp.presenters.ResearchesPresenter
 import com.tala.healthifyapp.views.ResearchesView
 import kotlinx.android.synthetic.main.activity_researches.*
-import kotlinx.android.synthetic.main.layout_res.*
 
 class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
 
-
-
     @InjectPresenter
     lateinit var researchesPresenter: ResearchesPresenter
-
 
     @ProvidePresenter
     fun providedResearchesPresenter(): ResearchesPresenter{
@@ -44,22 +38,22 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
         rvRes.adapter = adapter
 
         adapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener{_, _, position ->
-            //Log.i("sqlsql" , "${adapter.data[position].ID} - ${adapter.data[position].NAMEID} - ${adapter.data[position].IsFAVORITE}")
 
+            when (adapterRes[position].IsFAVORITE) {
+                0 -> toastShort("Добавлено в избранное")
+                1 -> toastShort("Удалено из избранного")
+            }
             researchesPresenter.updateFavClick(adapterRes[position].ID)
-
             adapterRes = researchesPresenter.sendListResearches()
-
             adapter.setNewData(adapterRes)
+
         }
 
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener{_,_,position ->
 
             val intent = Intent(this, TestsActivity::class.java)
-
             startActivity(intent.putExtra("EXTRA_ID_RES", adapterRes[position].ID.toString()))
 
-            //toastShort(adapterRes[position].ID.toString())
         }
 
     }
