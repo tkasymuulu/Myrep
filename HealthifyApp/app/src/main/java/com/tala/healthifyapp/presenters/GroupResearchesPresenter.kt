@@ -12,7 +12,5 @@ open class GroupResearchesPresenter: MvpPresenter<GroupResearchesView>() {
     fun sendListGrResPanel(): List<ResearchPanels> {
         return SugarRecord.find(ResearchPanels::class.java, "IS_ACTIVE = ?", "1")
 
-
-//            "SELECT ID, NAME FROM RESEARCH_PANELS WHERE IS_ACTIVE=1 ORDER BY NAME")
     }
 }

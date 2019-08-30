@@ -11,12 +11,10 @@ import com.tala.healthifyapp.views.ResearchesView
 @InjectViewState
 open class ResearchesPresenter(private val idResbyGrRes: String) : MvpPresenter<ResearchesView>() {
 
-
-
     fun sendListResearches(): List<SpAnaliz> {
         return SugarRecord.findWithQuery(SpAnaliz::class.java,"SELECT ID, NAMEID, IS_FAVORITE FROM SP_ANALIZ WHERE ID IN " +
                                                                     "(SELECT ID_RESEARCH FROM RESEARCH_PANEL_RELATIONS " +
-                                                                    "WHERE ID_PANEL=$idResbyGrRes) ORDER BY NAMEID")
+                                                                    "WHERE ID_PANEL=$idResbyGrRes)  ORDER BY NAMEID")
     }
 
     fun updateFavClick(idRes: Long) {
@@ -29,6 +27,5 @@ open class ResearchesPresenter(private val idResbyGrRes: String) : MvpPresenter<
         spAnaliz.save()
 
     }
-
 
 }

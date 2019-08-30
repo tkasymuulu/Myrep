@@ -11,7 +11,7 @@ import com.tala.healthifyapp.views.TestsView
 open class TestsPresenter(private val IdRes: String) : MvpPresenter<TestsView>() {
 
     fun sendListTests(): List<CustomSpPodanaliz> {
-        return SugarRecord.findWithQuery(CustomSpPodanaliz::class.java,"select SPP.ID as ID , SPP.NAMEID as NAMEID, SPP.RESULT as RESULT, N.VALUE_FROM as VALUE_FROM, N.VALUE_TO as  VALUE_TO\n" +
+        return SugarRecord.findWithQuery(CustomSpPodanaliz::class.java,"select SPP.ID as ID , SPP.NAMEID as NAMEID, SPP.RESULT as RESULT, N.VALUE_FROM as VALUEFROM, N.VALUE_TO as  VALUETO\n" +
                 "from SP_PODANALIZ as SPP INNER JOIN NORMAS AS N ON SPP.ID=N.ID_TEST where SPP.CODEID_ANALIZ=$IdRes")
     }
 }

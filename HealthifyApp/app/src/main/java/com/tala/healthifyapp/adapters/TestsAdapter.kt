@@ -11,6 +11,6 @@ class TestsAdapter(data: List<CustomSpPodanaliz>) : BaseQuickAdapter<CustomSpPod
     override fun convert(helper: BaseViewHolder?, item: CustomSpPodanaliz?) {
         helper?.setText(R.id.txtTestName, item?.NAMEID)
         helper?.setText(R.id.txtEdizm, item?.RESULT)
-        helper?.setText(R.id.txtNorma, "${item?.VALUE_FROM}")
+        helper?.setText(R.id.txtNorma, "${item?.VALUEFROM} - ${item?.VALUETO}")
     }
 }

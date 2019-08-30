@@ -5,17 +5,16 @@ class CustomSpPodanaliz {
     var ID: Long = 0
     lateinit var NAMEID: String
     lateinit var RESULT: String
-    lateinit var VALUE_FROM: String
-    lateinit var VALUE_TO: String
+    lateinit var VALUEFROM: String
+    lateinit var VALUETO: String
 
     constructor()
-
-    constructor(ID: Long, NAMEID: String, RESULT: String, VALUE_FROM: String, VALUE_TO: String): super() {
+    constructor(ID: Long, NAMEID: String, RESULT: String, VALUEFROM: String, VALUETO: String) {
         this.ID = ID
         this.NAMEID = NAMEID
         this.RESULT = RESULT
-        this.VALUE_FROM = VALUE_FROM
-        this.VALUE_TO = VALUE_TO
+        this.VALUEFROM = VALUEFROM
+        this.VALUETO = VALUETO
     }
 
 

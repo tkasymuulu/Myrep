@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
                 android:orientation="vertical">
 
 
@@ -19,9 +19,8 @@
                 android:textSize="20sp"
                 android:text="Показатель"
                 android:fontFamily="@font/roboto"
-
+                android:background="#66b5ad"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-
                 android:textStyle="bold" />
     </LinearLayout>
 
@@ -38,20 +37,18 @@
                 android:text="Ед.изм"
                 android:layout_weight="2"
                 android:fontFamily="@font/roboto"
-                android:textSize="18dp"
-
+                android:textSize="18sp"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
                 android:id="@+id/txtNorma"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
                 android:text="Норма"
                 android:layout_weight="1"
-
                 android:fontFamily="@font/roboto"
-                android:textSize="18dp"
+                android:textAlignment="textStart"
+                android:textSize="18sp"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
@@ -59,11 +56,11 @@
 
     </LinearLayout>
 
-<view android:layout_width="match_parent"
+<View android:layout_width="match_parent"
       android:layout_height="1dp"
         android:background="#E7E7E7">
 
 
-</view>
+</View>
 
 </LinearLayout>

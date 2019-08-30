@@ -41,8 +41,6 @@ lateinit var groupResearchesPresenter: GroupResearchesPresenter
         }
     }
 
-
-
     override fun openResearches() {
         startActivity(Intent(applicationContext, ResearchesActivity::class.java))
     }

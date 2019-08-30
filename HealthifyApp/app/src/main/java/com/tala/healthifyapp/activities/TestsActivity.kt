@@ -8,6 +8,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.tala.healthifyapp.R
 import com.tala.healthifyapp.adapters.TestsAdapter
+import com.tala.healthifyapp.helper.toastShort
 import com.tala.healthifyapp.presenters.ResearchesPresenter
 import com.tala.healthifyapp.presenters.TestsPresenter
 import com.tala.healthifyapp.views.TestsView
@@ -33,7 +34,6 @@ class TestsActivity : MvpAppCompatActivity(), TestsView {
 
         rvTest.layoutManager = LinearLayoutManager(this)
         testsAdapter = TestsAdapter(adapterTest)
-        rvTest.setHasFixedSize(true)
         rvTest.adapter = testsAdapter
     }
 }
