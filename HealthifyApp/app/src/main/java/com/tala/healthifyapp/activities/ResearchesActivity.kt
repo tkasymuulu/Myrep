@@ -30,6 +30,9 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_researches)
 
+        title = intent.getStringExtra("EXTRA_NAME_PANEL")
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         var adapterRes = researchesPresenter.sendListResearches()
 
         rvRes.layoutManager = LinearLayoutManager(this)
@@ -52,10 +55,17 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener{_,_,position ->
 
             val intent = Intent(this, TestsActivity::class.java)
-            startActivity(intent.putExtra("EXTRA_ID_RES", adapterRes[position].ID.toString()))
+            intent.putExtra("EXTRA_ID_RES", adapterRes[position].ID.toString())
+            intent.putExtra("EXTRA_NAME_RES", adapterRes[position].NAMEID)
+            startActivity(intent)
 
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
 
