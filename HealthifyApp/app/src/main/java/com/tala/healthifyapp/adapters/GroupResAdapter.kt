@@ -11,7 +11,7 @@ class GroupResAdapter(data: List<ResearchPanels>) : BaseQuickAdapter<ResearchPan
 
     override fun convert(helper: BaseViewHolder?, item: ResearchPanels?) {
         helper?.setText(R.id.txt_group_res, "${item?.NAME}")
-        helper?.setText(R.id.count_res, "${item?.COUNT}")
+        helper?.setText(R.id.count_res, "${item?.KOLI}")
     }
 
 }

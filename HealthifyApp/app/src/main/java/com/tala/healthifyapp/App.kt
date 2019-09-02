@@ -23,12 +23,12 @@ open class App : Application() {
     private fun copyDataBase() {
 
         //Open your local db as the input stream
-        val myInput = applicationContext.assets.open("real.db")
+        val myInput = applicationContext.assets.open("real1.db")
 
         // Path to the just created empty db
-        val outFileName = "/data/data/$packageName/databases/real.db"
+        val outFileName = "/data/data/$packageName/databases/real1.db"
 
-        val db = openOrCreateDatabase("real.db", MODE_PRIVATE, null)
+        val db = openOrCreateDatabase("real1.db", MODE_PRIVATE, null)
         db.close()
 
         //Open the empty db as the output stream
@@ -59,7 +59,7 @@ open class App : Application() {
         var checkDB: SQLiteDatabase? = null
 
         try {
-            val myPath = "/data/data/$packageName/databases/real.db"
+            val myPath = "/data/data/$packageName/databases/real1.db"
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY)
 
         } catch (e: SQLiteException) {

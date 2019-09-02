@@ -37,7 +37,7 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
 
         rvRes.layoutManager = LinearLayoutManager(this)
         adapter = ResearhesAdapter(adapterRes)
-        rvRes.setHasFixedSize(true)
+        rvRes.setHasFixedSize(false)
         rvRes.adapter = adapter
 
         adapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener{_, _, position ->
@@ -49,7 +49,6 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
             researchesPresenter.updateFavClick(adapterRes[position].ID)
             adapterRes = researchesPresenter.sendListResearches()
             adapter.setNewData(adapterRes)
-
         }
 
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener{_,_,position ->
@@ -58,7 +57,6 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
             intent.putExtra("EXTRA_ID_RES", adapterRes[position].ID.toString())
             intent.putExtra("EXTRA_NAME_RES", adapterRes[position].NAMEID)
             startActivity(intent)
-
         }
 
     }

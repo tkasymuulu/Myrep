@@ -46,7 +46,7 @@ lateinit var groupResearchesPresenter: GroupResearchesPresenter
 
             val intent = Intent(this, ResearchesActivity::class.java)
             intent.putExtra("EXTRA_ID_PANEL", "${adapterGrResPanel[position].id}")
-            intent.putExtra("EXTRA_NAME_PANEL", "${adapterGrResPanel[position].NAME}")
+            intent.putExtra("EXTRA_NAME_PANEL", adapterGrResPanel[position].NAME)
             startActivity(intent)
         }
     }

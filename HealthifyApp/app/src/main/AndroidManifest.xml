@@ -15,7 +15,7 @@
 
         <meta-data
                 android:name="DATABASE"
-                android:value="real.db"/>
+                android:value="real1.db"/>
         <meta-data
                 android:name="VERSION"
                 android:value="1"/>
