@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">Healthify</string>
-    <string name="add_to_fav">Добавлено в избранное</string>
-    <string name="del_to_fav">Удалено из избранного</string>
-</resources>
