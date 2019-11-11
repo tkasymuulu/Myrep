@@ -13,12 +13,11 @@ open class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if(!checkDataBase()) {copyDataBase()}
-
+        if (!checkDataBase()) {
+            copyDataBase() }
         SugarContext.init(this)
 
     }
-
 
     private fun copyDataBase() {
 
@@ -32,18 +31,13 @@ open class App : Application() {
         db.close()
 
         //Open the empty db as the output stream
-        val myOutput : OutputStream = FileOutputStream(outFileName)
+        val myOutput: OutputStream = FileOutputStream(outFileName)
 
         //transfer bytes from the inputfile to the outputfile
         val buffer = ByteArray(1024)
 
-//        do{
-//            val bytesRead = myInput.read(buffer)
-//            myOutput.write(buffer,0, bytesRead)
-//        }while(bytesRead != -1)
-
         var bytesRead: Int
-        while (myInput.read(buffer).also { bytesRead = it } >=0) {
+        while (myInput.read(buffer).also { bytesRead = it } >= 0) {
             myOutput.write(buffer, 0, bytesRead)
         }
 

@@ -7,6 +7,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.tala.healthifyapp.R
 import com.tala.healthifyapp.adapters.TestsAdapter
+import com.tala.healthifyapp.models.CustomSpPodanaliz
 import com.tala.healthifyapp.presenters.TestsPresenter
 import com.tala.healthifyapp.views.TestsView
 import kotlinx.android.synthetic.main.activity_tests.*
@@ -16,12 +17,10 @@ class TestsActivity : MvpAppCompatActivity(), TestsView {
     @InjectPresenter
     lateinit var testPresenter: TestsPresenter
 
-    @ProvidePresenter
-    fun providedTestPresenter(): TestsPresenter{
-        return TestsPresenter(intent.getStringExtra("EXTRA_ID_RES"))
-    }
-
     private lateinit var testsAdapter: TestsAdapter
+    private lateinit var testsAdapterByTest: TestsAdapter
+    private var adapterTestByAssaysId: List<CustomSpPodanaliz> = arrayListOf()
+    private var adapterTestByIdTest: List<CustomSpPodanaliz> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +29,19 @@ class TestsActivity : MvpAppCompatActivity(), TestsView {
         title = intent.getStringExtra("EXTRA_NAME_RES")
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val adapterTest = testPresenter.sendListTests()
+        val idAssys = intent.getStringExtra("EXTRA_ID_RES")
+        val idTest = intent.getStringExtra("EXTRA_ID_TEST")
+
+        if(!idAssys.isNullOrEmpty()){
+            adapterTestByAssaysId = testPresenter.sendListTests(idAssys)
+        } else  adapterTestByIdTest = testPresenter.getTestByTestId(idTest)
+
+
 
         rvTest.layoutManager = LinearLayoutManager(this)
-        testsAdapter = TestsAdapter(adapterTest)
-        rvTest.adapter = testsAdapter
+        testsAdapter = TestsAdapter(adapterTestByAssaysId)
+        testsAdapterByTest = TestsAdapter(adapterTestByIdTest)
+        rvTest.adapter = if(!adapterTestByAssaysId.isNullOrEmpty()) testsAdapter else testsAdapterByTest
     }
 
     override fun onSupportNavigateUp(): Boolean {

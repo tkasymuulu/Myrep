@@ -4,6 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
@@ -17,6 +19,7 @@ import com.tala.healthifyapp.presenters.FavoritePresenter
 import com.tala.healthifyapp.presenters.ResearchesPresenter
 import com.tala.healthifyapp.views.FavoriteView
 import kotlinx.android.synthetic.main.activity_fav.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class FavActivity : MvpAppCompatActivity(), FavoriteView {
 
@@ -42,9 +45,11 @@ class FavActivity : MvpAppCompatActivity(), FavoriteView {
         if(adapterFavRes.isEmpty()) {
             rvFavRes.visibility = View.GONE
             empty_layout.visibility = View.VISIBLE
+            adapter.notifyDataSetChanged()
         } else {
             rvFavRes.visibility = View.VISIBLE
             empty_layout.visibility = View.GONE
+            adapter.notifyDataSetChanged()
         }
 
         adapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener{ _, _, position ->

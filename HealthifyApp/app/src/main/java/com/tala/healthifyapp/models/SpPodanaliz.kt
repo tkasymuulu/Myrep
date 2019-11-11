@@ -1,5 +1,6 @@
 package com.tala.healthifyapp.models
 
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.orm.SugarRecord
 
 class SpPodanaliz : SugarRecord {
