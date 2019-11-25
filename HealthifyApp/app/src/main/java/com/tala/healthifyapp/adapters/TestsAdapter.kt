@@ -10,10 +10,10 @@ class TestsAdapter(data: List<CustomSpPodanaliz>) : BaseQuickAdapter<CustomSpPod
 
     override fun convert(helper: BaseViewHolder?, item: CustomSpPodanaliz?) {
 
-        when(helper?.layoutPosition?.rem(2)) {
-            0 ->helper.setBackgroundRes(R.id.test_layout, R.color.orange_primary)
-            1 ->helper.setBackgroundRes(R.id.test_layout, R.color.orange_light)
-        }
+//        when(helper?.layoutPosition?.rem(2)) {
+//            0 ->helper.setBackgroundRes(R.id.test_layout, R.color.purple_light)
+//            1 ->helper.setBackgroundRes(R.id.test_layout, R.color.purple)
+//        }
 
         helper?.setText(R.id.txtTestName, item?.NAMEID)
         helper?.setText(R.id.txtEdizm, item?.RESULT)

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
@@ -42,7 +43,6 @@ class ResPanelActivity : MvpAppCompatActivity(), GroupResearchesView {
         setContentView(R.layout.activity_main)
 
         title = "Панель исследований"
-        titleColor = R.color.orange_primary
 
         val adapterGrResPanel = groupResearchesPresenter.sendListGrResPanel()
 
@@ -116,10 +116,13 @@ class ResPanelActivity : MvpAppCompatActivity(), GroupResearchesView {
 
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
+        if(!search.text.isNullOrEmpty()){
+            search.setText("")
+        } else if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
             return
         }
+
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show()
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)

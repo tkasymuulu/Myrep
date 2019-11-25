@@ -8,4 +8,6 @@
     <color name="orange_dark">#C33433</color>
     <color name="primary_text_color">#696B82</color>
     <color name="light_text_colort">#BCBCBE</color>
+    <color name="purple">#E18686</color>
+    <color name="purple_light">#E16464</color>
 </resources>

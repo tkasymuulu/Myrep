@@ -26,7 +26,14 @@ class TestsActivity : MvpAppCompatActivity(), TestsView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tests)
 
-        title = intent.getStringExtra("EXTRA_NAME_RES")
+        val nameRes = intent.getStringExtra("EXTRA_NAME_RES")
+        val nameTest = intent.getStringExtra("EXTRA_NAME_TEST")
+
+        title = if(!nameRes.isNullOrEmpty()){
+            nameRes
+        } else nameTest
+
+
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val idAssys = intent.getStringExtra("EXTRA_ID_RES")

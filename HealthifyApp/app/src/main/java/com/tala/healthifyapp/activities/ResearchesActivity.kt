@@ -2,7 +2,10 @@ package com.tala.healthifyapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -22,6 +25,11 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
     @ProvidePresenter
     fun providedResearchesPresenter(): ResearchesPresenter{
         return ResearchesPresenter(intent.getStringExtra("EXTRA_ID_PANEL"))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main, menu)
+        return true
     }
 
     private lateinit var adapter: ResearhesAdapter
@@ -59,6 +67,16 @@ class ResearchesActivity : MvpAppCompatActivity(), ResearchesView{
             startActivity(intent)
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item!!.itemId) {
+            R.id.action_fav -> startActivity(Intent(this, FavActivity::class.java))
+
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {

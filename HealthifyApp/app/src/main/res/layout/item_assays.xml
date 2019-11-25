@@ -4,58 +4,92 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:clickable="true"
+        android:orientation="vertical"
+        android:focusable="true">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/orange_primary"
-                android:textSize="12sp"
-                android:text="Исследование:" />
+
+            android:orientation="horizontal">
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/custom_background_2">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/roboto"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        android:text="Исследование" />
+
+            </LinearLayout>
+
 
             <TextView
                     android:id="@+id/txt_assay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="#52565e"
                     android:textSize="16sp"
                     tools:text="Кортизол"
                     android:layout_marginBottom="5dp"/>
 
-            <ImageView
-                    android:id="@+id/icon_fav"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_unfav"/>
+
+
         </LinearLayout>
 
+<!--        <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical">-->
+
+<!--            <ImageView-->
+<!--                    android:id="@+id/icon_fav"-->
+<!--                    android:layout_width="32dp"-->
+<!--                    android:layout_height="32dp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:src="@drawable/ic_unfav"/>-->
+
+<!--        </LinearLayout>-->
 
 
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#F0F0F0" />
 
     </LinearLayout>
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F0F0F0"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+
+
+
 
 
 

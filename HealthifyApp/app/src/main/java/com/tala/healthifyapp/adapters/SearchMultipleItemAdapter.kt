@@ -23,9 +23,9 @@ class SearchMultipleItemAdapter(data: List<MultipleItem>) :
     override fun convert(helper: BaseViewHolder?, item: MultipleItem?) {
         when (helper?.itemViewType) {
             MultipleItem.ASSAYS -> {
-                if (item?.favorite == 1) {
-                    helper.setImageResource(R.id.icon_fav, R.drawable.ic_fav)
-                } else helper.setImageResource(R.id.icon_fav, R.drawable.ic_unfav)
+//                if (item?.favorite == 1) {
+//                    helper.setImageResource(R.id.icon_fav, R.drawable.ic_fav)
+//                } else helper.setImageResource(R.id.icon_fav, R.drawable.ic_unfav)
 
                 helper.setText(R.id.txt_assay, item?.content)
 
