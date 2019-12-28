@@ -3,8 +3,6 @@ package com.tala.healthifyapp.presenters
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.orm.SugarRecord
-import com.tala.healthifyapp.models.ResearchPanelRelations
-import com.tala.healthifyapp.models.ResearchPanels
 import com.tala.healthifyapp.models.SpAnaliz
 import com.tala.healthifyapp.views.ResearchesView
 

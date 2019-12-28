@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">HealthifyApp</string>
+    <string name="app_name">Healthify - Справочник анализов</string>
+    <string name="AdMobAppID">ca-app-pub-7111246172974645~3816690385</string>
+    <string name="TestAdMobAppID">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="testAdMobID">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="testInterstitialAdAdMobID">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="BannerResPanel">ca-app-pub-7111246172974645/8873575942</string>
+    <string name="BannerResearchesActivity">ca-app-pub-7111246172974645/3638395285</string>
+    <string name="BannerFavActivity">ca-app-pub-7111246172974645/8679463818</string>
+    <string name="FullScreenBannerTestActivity">ca-app-pub-7111246172974645/2114055460</string>
+    
 </resources>

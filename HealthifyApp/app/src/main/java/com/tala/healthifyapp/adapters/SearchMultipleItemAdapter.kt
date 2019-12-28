@@ -1,16 +1,11 @@
 package com.tala.healthifyapp.adapters
 
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.orm.SugarRecord
 import com.tala.healthifyapp.R
 import com.tala.healthifyapp.activities.TestsActivity
-import com.tala.healthifyapp.models.SpAnaliz
 
 class SearchMultipleItemAdapter(data: List<MultipleItem>) :
     BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {

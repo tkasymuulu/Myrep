@@ -4,7 +4,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.tala.healthifyapp.R
 import com.tala.healthifyapp.models.SpAnaliz
-import kotlinx.android.synthetic.main.activity_fav.view.*
 
 class FavAdapter(data: List<SpAnaliz>): BaseQuickAdapter<SpAnaliz, BaseViewHolder>(R.layout.layout_res, data) {
 

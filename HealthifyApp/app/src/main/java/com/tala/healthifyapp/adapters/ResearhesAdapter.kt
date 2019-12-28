@@ -1,6 +1,5 @@
 package com.tala.healthifyapp.adapters
 
-import android.util.Log
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.tala.healthifyapp.R

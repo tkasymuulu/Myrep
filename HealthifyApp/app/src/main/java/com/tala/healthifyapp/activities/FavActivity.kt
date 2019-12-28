@@ -1,25 +1,19 @@
 package com.tala.healthifyapp.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.MenuItem
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.google.android.gms.ads.AdRequest
 import com.tala.healthifyapp.R
 import com.tala.healthifyapp.adapters.FavAdapter
-import com.tala.healthifyapp.adapters.ResearhesAdapter
 import com.tala.healthifyapp.helper.toastShort
 import com.tala.healthifyapp.presenters.FavoritePresenter
-import com.tala.healthifyapp.presenters.ResearchesPresenter
 import com.tala.healthifyapp.views.FavoriteView
 import kotlinx.android.synthetic.main.activity_fav.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class FavActivity : MvpAppCompatActivity(), FavoriteView {
 
@@ -31,6 +25,8 @@ class FavActivity : MvpAppCompatActivity(), FavoriteView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fav)
+
+        adView.loadAd(AdRequest.Builder().addTestDevice("A9F4E9172DAD3993800E730CD5A702F1").build())
 
         title = "Избранное"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

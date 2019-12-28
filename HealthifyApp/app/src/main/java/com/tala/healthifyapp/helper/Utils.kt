@@ -1,9 +1,7 @@
 package com.tala.healthifyapp.helper
 
-import android.app.Activity
 import android.content.Context
 import android.widget.Toast
-import com.andrognito.flashbar.Flashbar
 
 
 fun Context.toastShort(str: String) {
