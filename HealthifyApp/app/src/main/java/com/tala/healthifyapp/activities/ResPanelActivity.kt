@@ -43,11 +43,7 @@ class ResPanelActivity : MvpAppCompatActivity(), GroupResearchesView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        if(CacheHelper.getActivateAdmob()){
-            adView.visibility = View.GONE
-        } else adView.loadAd(AdRequest.Builder().addTestDevice("A9F4E9172DAD3993800E730CD5A702F1").build())
-
+        adView.loadAd(AdRequest.Builder().addTestDevice("A9F4E9172DAD3993800E730CD5A702F1").build())
 
         title = "Панель исследований"
 
@@ -81,7 +77,6 @@ class ResPanelActivity : MvpAppCompatActivity(), GroupResearchesView {
         }
         tests.forEach { data.add(MultipleItem(MultipleItem.TESTS, it.ID, it.NAMEID)) }
 
-
         search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -93,27 +88,21 @@ class ResPanelActivity : MvpAppCompatActivity(), GroupResearchesView {
                     rvGrResPanel.adapter = SearchMultipleItemAdapter(data.filter { ex ->
                         ex.content?.toUpperCase()!!.contains(s.toString().toUpperCase())
                     })
-
                 } else rvGrResPanel.adapter = adapter
             }
-
         })
 
         rvGrResPanel.setOnTouchListener { v, _ ->
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(v.windowToken, 0)
-
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when (item!!.itemId) {
             R.id.action_fav -> openFavActivity()
-
         }
-
         return super.onOptionsItemSelected(item)
     }
 
@@ -123,7 +112,7 @@ class ResPanelActivity : MvpAppCompatActivity(), GroupResearchesView {
 
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
-        if(!search.text.isNullOrEmpty()){
+        if (!search.text.isNullOrEmpty()) {
             search.setText("")
         } else if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
@@ -133,8 +122,5 @@ class ResPanelActivity : MvpAppCompatActivity(), GroupResearchesView {
         this.doubleBackToExitPressedOnce = true
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
         Toast.makeText(this, "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show()
-
     }
-
-
 }

@@ -24,22 +24,11 @@ class TestsActivity : MvpAppCompatActivity(), TestsView {
     private var adapterTestByAssaysId: List<CustomSpPodanaliz> = arrayListOf()
     private var adapterTestByIdTest: List<CustomSpPodanaliz> = arrayListOf()
 
-    private lateinit var mInterstitialAd: InterstitialAd
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tests)
 
-        mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-        mInterstitialAd.adListener = object: AdListener() {
-
-            override fun onAdLoaded() {
-                mInterstitialAd.show()
-            }
-        }
-        mInterstitialAd.loadAd(AdRequest.Builder().addTestDevice("A9F4E9172DAD3993800E730CD5A702F1").build())
-
+        adView.loadAd(AdRequest.Builder().addTestDevice("A9F4E9172DAD3993800E730CD5A702F1").build())
 
         val nameRes = intent.getStringExtra("EXTRA_NAME_RES")
         val nameTest = intent.getStringExtra("EXTRA_NAME_TEST")

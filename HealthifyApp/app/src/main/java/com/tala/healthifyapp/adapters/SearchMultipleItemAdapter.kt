@@ -18,12 +18,7 @@ class SearchMultipleItemAdapter(data: List<MultipleItem>) :
     override fun convert(helper: BaseViewHolder?, item: MultipleItem?) {
         when (helper?.itemViewType) {
             MultipleItem.ASSAYS -> {
-//                if (item?.favorite == 1) {
-//                    helper.setImageResource(R.id.icon_fav, R.drawable.ic_fav)
-//                } else helper.setImageResource(R.id.icon_fav, R.drawable.ic_unfav)
-
                 helper.setText(R.id.txt_assay, item?.content)
-
 
                 helper.getView<TextView>(R.id.txt_assay).setOnClickListener {
                     val intent = Intent(mContext, TestsActivity::class.java)
